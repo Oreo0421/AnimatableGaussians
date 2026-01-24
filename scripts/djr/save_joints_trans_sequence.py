@@ -28,24 +28,14 @@ def process_joints_folder(input_dir, output_dir, apply_transform=True):
     if apply_transform:
         os.makedirs(json_trans_dir, exist_ok=True)
         os.makedirs(npy_trans_dir,  exist_ok=True)
- # First transform (the one you used earlier on the human position)
-    transform = np.array([
-        [1.417337, -3.719793,  5.757977, 20.600479],
-        [-0.786601, -5.929179, -3.636770,  2.822414],
-        [6.809730,  0.089329, -1.618520, 25.250027],
-        [0.000000,  0.000000,  0.000000,  1.000000]
-    ], dtype=np.float64)
 
     # 4x4 transformation matrix (edit as needed)
-    trans_matrix_scene = np.array([
+    trans_matrix = np.array([
         [0.004506839905, -0.124592848122, 0.083404511213, -3.700955867767],
         [0.149711236358, 0.008269036189, 0.004262818955, -2.735711812973],
         [-0.008138610050, 0.083115860820, 0.124601446092, -4.244910240173],
         [ 0.000000,  0.000000,  0.000000,  1.000000]
     ], dtype=np.float64)
-    trans_matrix =  trans_matrix_scene @ transform
-
-
 
     # Collect 8-digit .npy files (e.g., 00000000.npy)
     pattern = re.compile(r"^\d{8}\.npy$")
