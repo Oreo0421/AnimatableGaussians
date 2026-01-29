@@ -18,7 +18,7 @@ fi
 ANIM_ROOT="${ANIM_ROOT:-/home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians}"
 HUGS_ROOT="${HUGS_ROOT:-/home/fzhi/fzt/3dgs_pipeline/ml_hug/ml-hugs}"
 
-POSE_DIR="${POSE_DIR:-/home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/Data/Pose/AMASS/CMU/test}"
+POSE_DIR="${POSE_DIR:-/home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/Data/Pose/AMASS/CMU/omilabpose}"
 
 # default config path rule: configs/mvhn_xxxx/avatar.yaml
 CONFIG_SRC="${CONFIG_SRC:-${ANIM_ROOT}/configs/mvhn_${SUBJECT}/avatar.yaml}"
