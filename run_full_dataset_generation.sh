@@ -37,7 +37,7 @@ BASE_DIR="${BASE_DIR:-/home/fzhi/fzt/3dgs_pipeline}"
 ANIM_ROOT="${ANIM_ROOT:-${BASE_DIR}/animatable_3DGS/AnimatableGaussians}"
 HUGS_ROOT="${HUGS_ROOT:-${BASE_DIR}/ml_hug/ml-hugs}"
 
-POSE_DIR="${POSE_DIR:-${ANIM_ROOT}/Data/Pose/AMASS/CMU/test}"
+POSE_DIR="${POSE_DIR:-${ANIM_ROOT}/Data/Pose/AMASS/CMU/omilabpose}"
 
 # subject config（作为模板，不会写回；脚本会生成临时 yaml）
 CONFIG_SRC="${CONFIG_SRC:-${ANIM_ROOT}/configs/mvhn_${SUBJECT}/avatar.yaml}"
