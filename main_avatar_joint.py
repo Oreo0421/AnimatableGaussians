@@ -697,6 +697,10 @@ class AvatarTrainer:
                 time_start.record()
 
             if self.opt['test'].get('render_skeleton', False):
+                kin_save_path = os.path.join(output_dir, "kin_parent.npy")
+                if (not os.path.exists(kin_save_path)) and ("kin_parent" in item):
+                    np.save(kin_save_path, item["kin_parent"].cpu().numpy().astype(np.int32))
+                    print("[Saved kin_parent]", kin_save_path)
                 from utils.visualize_skeletons import construct_skeletons
                 skel_vertices, skel_faces = construct_skeletons(item['joints'].cpu().numpy(), item['kin_parent'].cpu().numpy())
                 skel_mesh = trimesh.Trimesh(skel_vertices, skel_faces, process = False)
