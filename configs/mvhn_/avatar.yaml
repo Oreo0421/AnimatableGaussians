@@ -54,7 +54,7 @@ test:
     frame_range: [0, 100]
     subject_name: 101010
   pose_data:
-    data_path: /home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/Data/Pose/AMASS/CMU/omilabpose/walk.npz
+    data_path: /home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/Data/Pose/AMASS/CMU/transpose/06_13_poses_inplace_stride5.npz
     frame_range: [0, 100]
 #    data_path: Z:/Data/Pose/AMASS/CMU/06/06_13_poses.npz
 #    data_path: Z:/Data/Pose/AMASS/CMU/10/10_05_poses.npz
@@ -69,7 +69,7 @@ test:
   save_ply: true
   n_pca: 20
   sigma_pca: 2.0
-  output_dir: /mnt/data_hdd/fzhi/human_data/101010/walk/test_results
+  output_dir: /mnt/data_hdd/fzhi/human_data/101010/06_13_poses_inplace_stride5/test_results
   prev_ckpt:  /mnt/data_hdd/fzhi/dataset/101010/avatar/batch_650000
 model:
   with_viewdirs: true

@@ -2,8 +2,8 @@ mode: train
 train:
   dataset: MvRgbDatasetMVHumanNet
   data:
-    subject_name: 101010
-    data_dir: /mnt/data_hdd/fzhi/dataset/101010
+    subject_name: 101223
+    data_dir: /mnt/data_hdd/fzhi/dataset/101223
     frame_range: &id001
     - 0
     - 60
@@ -24,8 +24,8 @@ train:
     - 14
     - 15
     load_smpl_pos_map: true
-  pretrained_dir: /mnt/data_hdd/fzhi/dataset/101010/avatar/pretrained
-  net_ckpt_dir: /mnt/data_hdd/fzhi/dataset/101010/avatar
+  pretrained_dir: /mnt/data_hdd/fzhi/dataset/101223/avatar/pretrained
+  net_ckpt_dir: /mnt/data_hdd/fzhi/dataset/101223/avatar
   prev_ckpt: null
   ckpt_interval:
     epoch: 30
@@ -50,9 +50,9 @@ train:
 test:
   dataset: MvRgbDatasetMVHumanNet
   data:
-    data_dir: /mnt/data_hdd/fzhi/dataset/101010
+    data_dir: /mnt/data_hdd/fzhi/dataset/101223
     frame_range: [0, 100]
-    subject_name: 101010
+    subject_name: 101223
   pose_data:
     data_path: /home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/Data/Pose/AMASS/CMU/omilabpose/walk.npz
     frame_range: [0, 100]
@@ -69,8 +69,8 @@ test:
   save_ply: true
   n_pca: 20
   sigma_pca: 2.0
-  output_dir: /mnt/data_hdd/fzhi/human_data/101010/walk/test_results
-  prev_ckpt:  /mnt/data_hdd/fzhi/dataset/101010/avatar/batch_650000
+  output_dir: /mnt/data_hdd/fzhi/human_data/101223/walk/test_results
+  prev_ckpt:  /mnt/data_hdd/fzhi/dataset/101223/avatar/batch_650000
 model:
   with_viewdirs: true
   random_style: false

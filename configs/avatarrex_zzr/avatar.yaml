@@ -51,11 +51,11 @@ test:
   dataset: MvRgbDatasetAvatarReX
   data:
     data_dir: /home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/data_body/zzr/
-    frame_range: [0, 500]
+    frame_range: [0, 100]
     subject_name: avatarrex_zzr
   pose_data:
     data_path: /home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/Data/Pose/CMU/05/05_01_poses.npz/
-    frame_range: [2000, 2500]
+    frame_range: [0, 100]
 #    data_path: Z:/Data/Pose/AMASS/CMU/06/06_13_poses.npz
 #    data_path: Z:/Data/Pose/AMASS/CMU/10/10_05_poses.npz
 #    frame_interval: 4
@@ -63,7 +63,7 @@ test:
   render_view_idx: 13
   global_orient: true
   img_scale: 1.0
-  save_mesh: false
+  save_mesh: true
   render_skeleton: true
   save_tex_map: false
   save_ply: trues
