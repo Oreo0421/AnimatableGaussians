@@ -498,3 +498,50 @@ class MvRgbDatasetActorsHQ(MvRgbDatasetBase):
         color_img = cv.imread(self.data_dir + '/4x/rgbs/%s/%s_rgb%06d.jpg' % (cam_name, cam_name, pose_idx), cv.IMREAD_UNCHANGED)
         mask_img = cv.imread(self.data_dir + '/4x/masks/%s/%s_mask%06d.png' % (cam_name, cam_name, pose_idx), cv.IMREAD_UNCHANGED)
         return color_img, mask_img
+
+## -------------------------------------------------- ##
+## ------- NEW CLASS FOR MVHumanNet DATASET --------- ##
+class MvRgbDatasetMVHumanNet(MvRgbDatasetBase):
+    def __init__(
+        self,
+        data_dir,
+        frame_range = None,
+        used_cam_ids = None,
+        training = True,
+        subject_name = None,
+        load_smpl_pos_map = False,
+        load_smpl_nml_map = False,
+        mode = '3dgs'
+    ):
+        super(MvRgbDatasetMVHumanNet, self).__init__(
+            data_dir,
+            frame_range,
+            used_cam_ids,
+            training,
+            subject_name,
+            load_smpl_pos_map,
+            load_smpl_nml_map,
+            mode
+        )
+        self.img_files = sorted(os.listdir(self.data_dir + '/images/cam_00'))
+        self.img_file_names = [f.rstrip('.jpg') for f in self.img_files]
+
+    def load_cam_data(self):
+        import json
+        cam_data = json.load(open(self.data_dir + '/calibrations.json', 'r'))
+        self.view_num = len(cam_data)
+        self.extr_mats = []
+        self.cam_names = ['cam%02d' % view_idx for view_idx in range(self.view_num)]
+        for view_idx in range(self.view_num):
+            extr_mat = np.identity(4, np.float32)
+            extr_mat[:3, :3] = np.array(cam_data['cam_%02d' % view_idx]['R'], np.float32).reshape(3, 3)
+            extr_mat[:3, 3] = np.array(cam_data['cam_%02d' % view_idx]['T'], np.float32)
+            self.extr_mats.append(extr_mat)
+        self.intr_mats = [np.array(cam_data['cam_%02d' % view_idx]['K'], np.float32).reshape(3, 3) for view_idx in range(self.view_num)]
+        self.img_heights = [cam_data['cam_%02d' % view_idx]['imgSize'][1] for view_idx in range(self.view_num)]
+        self.img_widths = [cam_data['cam_%02d' % view_idx]['imgSize'][0] for view_idx in range(self.view_num)]
+
+    def load_color_mask_images(self, pose_idx, view_idx):
+        color_img = cv.imread(f'{self.data_dir}/images/cam_{view_idx:02d}/{self.img_file_names[pose_idx]}.jpg', cv.IMREAD_UNCHANGED)
+        mask_img = cv.imread(f'{self.data_dir}/masks/cam_{view_idx:02d}/{self.img_file_names[pose_idx]}.png', cv.IMREAD_UNCHANGED)
+        return color_img, mask_img
