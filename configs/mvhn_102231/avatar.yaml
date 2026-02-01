@@ -1,12 +1,12 @@
 mode: train
 train:
-  dataset: MvRgbDatasetAvatarReX
+  dataset: MvRgbDatasetMVHumanNet
   data:
-    subject_name: avatarrex_zzr
-    data_dir: /mnt/data_hdd/fzhi/dataset/avatarrex_zzr/
+    subject_name: 102231
+    data_dir: /mnt/data_hdd/fzhi/dataset/102231
     frame_range: &id001
     - 0
-    - 2001
+    - 60
     - 1
     used_cam_ids:
     - 0
@@ -24,19 +24,19 @@ train:
     - 14
     - 15
     load_smpl_pos_map: true
-  pretrained_dir: null
-  net_ckpt_dir: ./results_test/avatarrex_zzr/avatar
+  pretrained_dir: /mnt/data_hdd/fzhi/dataset/102231/avatar/pretrained
+  net_ckpt_dir: /mnt/data_hdd/fzhi/dataset/102231/avatar
   prev_ckpt: null
   ckpt_interval:
-    epoch: 10
+    epoch: 30
     batch: 50000
   eval_interval: 1000
   eval_training_ids:
-  - 190
-  - 7
+  - 1
+  - 1
   eval_testing_ids:
-  - 354
-  - 7
+  - 9
+  - 14
   eval_img_factor: 1.0
   lr_init: 0.0005
   loss_weight:
@@ -48,11 +48,11 @@ train:
   num_workers: 8
   random_bg_color: true
 test:
-  dataset: MvRgbDatasetAvatarReX
+  dataset: MvRgbDatasetMVHumanNet
   data:
-    data_dir: /mnt/data_hdd/fzhi/dataset/avatarrex_zzr/
+    data_dir: /mnt/data_hdd/fzhi/dataset/102231
     frame_range: [0, 100]
-    subject_name: avatarrex_zzr
+    subject_name: 102231
   pose_data:
     data_path: /home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/Data/Pose/AMASS/CMU/omilabpose/walk.npz
     frame_range: [0, 100]
@@ -63,14 +63,14 @@ test:
   render_view_idx: 13
   global_orient: true
   img_scale: 1.0
-  save_mesh: true
+  save_mesh: false
   render_skeleton: true
   save_tex_map: false
-  save_ply: trues
+  save_ply: true
   n_pca: 20
   sigma_pca: 2.0
-  output_dir: /mnt/data_hdd/fzhi/human_data/avatarrex_zzr/walk/test_results
-  prev_ckpt:  /mnt/data_hdd/fzhi/dataset/avatarrex_zzr/batch_700000/
+  output_dir: /mnt/data_hdd/fzhi/human_data/102231/walk/test_results
+  prev_ckpt:  /mnt/data_hdd/fzhi/dataset/102231/avatar/batch_650000
 model:
   with_viewdirs: true
   random_style: false
