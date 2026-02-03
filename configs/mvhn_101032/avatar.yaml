@@ -1,0 +1,76 @@
+mode: train
+train:
+  dataset: MvRgbDatasetMVHumanNet
+  data:
+    subject_name: 101032
+    data_dir: /mnt/data_hdd/fzhi/dataset/101032
+    frame_range: &id001
+    - 0
+    - 60
+    - 1
+    used_cam_ids:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 14
+    - 15
+    load_smpl_pos_map: true
+  pretrained_dir: /mnt/data_hdd/fzhi/dataset/101032/avatar/pretrained
+  net_ckpt_dir: /mnt/data_hdd/fzhi/dataset/101032/avatar
+  prev_ckpt: null
+  ckpt_interval:
+    epoch: 30
+    batch: 50000
+  eval_interval: 1000
+  eval_training_ids:
+  - 1
+  - 1
+  eval_testing_ids:
+  - 9
+  - 14
+  eval_img_factor: 1.0
+  lr_init: 0.0005
+  loss_weight:
+    l1: 1.0
+    lpips: 0.1
+    offset: 0.005
+  finetune_color: false
+  batch_size: 1
+  num_workers: 8
+  random_bg_color: true
+test:
+  dataset: MvRgbDatasetMVHumanNet
+  data:
+    data_dir: /mnt/data_hdd/fzhi/dataset/101032
+    frame_range: [0, 100]
+    subject_name: 101032
+  pose_data:
+    data_path: /home/fzhi/fzt/3dgs_pipeline/animatable_3DGS/AnimatableGaussians/Data/Pose/AMASS/CMU/omilabpose/walk.npz
+    frame_range: [0, 100]
+#    data_path: Z:/Data/Pose/AMASS/CMU/06/06_13_poses.npz
+#    data_path: Z:/Data/Pose/AMASS/CMU/10/10_05_poses.npz
+#    frame_interval: 4
+  view_setting: free
+  render_view_idx: 13
+  global_orient: true
+  img_scale: 1.0
+  save_mesh: false
+  render_skeleton: true
+  save_tex_map: false
+  save_ply: true
+  n_pca: 20
+  sigma_pca: 2.0
+  output_dir: /mnt/data_hdd/fzhi/human_data/101032/walk/test_results
+  prev_ckpt:  /mnt/data_hdd/fzhi/dataset/101032/avatar/batch_800000
+model:
+  with_viewdirs: true
+  random_style: false
